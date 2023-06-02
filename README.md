@@ -1,7 +1,7 @@
-# Self-Guided Diffusion Models(CVPR paper id 621)
+# Self-Guided Diffusion Models
 
 
-## Main Experiment
+
 
 ### Image-level Guidance
 
