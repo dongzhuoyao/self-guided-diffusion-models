@@ -1,0 +1,10 @@
+
+image_dir: "/home/thu/data/sg_data/cs_train_extra_320"
+
+result_dir: "/home/thu/data/cityscapes_stego_generated_v1"
+ckpt_path: "/home/thu/lab/self-guidance/side_repo/STEGO/saved_models/cityscapes_vit_base_1.ckpt"
+papervis_dir: '/home/thu/lab/self-guidance/side_repo/STEGO/outputs/papervis_stego_cityscapes'
+
+num_workers: 16
+
+is_vis: True

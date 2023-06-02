@@ -1,0 +1,88 @@
+name: cityscapes64 
+num_classes: 27
+image_size: 64
+channels: 3
+fid_every_n_epoch: 2
+vis_every_iter: 3000
+root: ${data_root}/cs320_v2
+lr: 1e-4
+wd: 0.01
+
+h5_file: null
+lost_file: null
+stego_dir: ${data_root}/cityscapes_stego_generated_v1
+stego_k: 27
+
+root_global: ${data_root}
+fid_train_image_dir: ${data_root}/sg_fid_eval/cityscapes64_train_10k
+fid_val_image_dir: ${data_root}/sg_fid_eval/cityscapes64_train_10k
+#fid_val_image_dir: ${data_root}/sg_fid_eval/cityscapes64_val_10k
+fid_debug_dir: ${data_root}/sg_fid_eval/in32_4debug
+
+val_fid_num: 1000 
+test_fid_num: 10000
+  #1000step, ize64,10k images on das6: 14hour
+
+
+trainer:
+  limit_train_batches: 1.0
+  limit_val_batches: 0.1
+  check_val_every_n_epoch: 1
+  max_epochs: 20
+  #30epoch, das6, bs128, 1d20h
+
+
+
+target: pl_datamodule.dm.DataModuleFromConfig
+params:
+  batch_size: 128 # set at top-level for convenience
+  num_workers: 5
+  pin_memory: True
+  wrap: False
+  train:
+    target: dataset.cityscapes27.CityscapesDataset
+    params:
+      root: ${data.root}
+      split: 'train'
+      size: ${data.image_size}
+      h5_file: ${data.h5_file}
+      lost_file: ${data.lost_file}
+      condition_method: ${sg.params.condition_method}
+      condition: ${condition}
+      debug: ${debug}
+
+  validation:
+    target: dataset.cityscapes27.CityscapesDataset
+    params:
+      root: ${data.root}
+      split: 'val'
+      size: ${data.image_size}
+      h5_file: ${data.h5_file}
+      lost_file: ${data.lost_file}
+      condition_method: ${sg.params.condition_method}
+      condition: ${condition}
+      debug: ${debug}
+
+  test:
+    target: dataset.cityscapes27.CityscapesDataset
+    params:
+      root: ${data.root}
+      split: 'val'
+      size: ${data.image_size}
+      h5_file: ${data.h5_file}
+      lost_file: ${data.lost_file}
+      condition_method: ${sg.params.condition_method}
+      condition: ${condition}
+      debug: ${debug}
+  crossds:
+    target: dataset.cityscapes27.CityscapesDataset
+    params:
+      root: ${data.root}
+      split: 'val'
+      size: ${data.image_size}
+      h5_file: ${data.h5_file}
+      lost_file: ${data.lost_file}
+      condition_method: ${sg.params.condition_method}
+      condition: ${condition}
+      debug: ${debug}
+

@@ -1,0 +1,11 @@
+defaults:
+<<<<<<< HEAD
+  - sample: cocostuff27
+  - train: ffhq_taohu
+=======
+  - sample: voc_condscale_s0
+  - train: voc
+
+
+condscale_root: /home/thu/lab/self-guidance/outputs/voc_condscale_stegoclusterlayout/26-09-2022/00-38-52
+>>>>>>> 83b334eda8c048577e82592a73563264dd05826e

@@ -1,0 +1,1 @@
+Couldn't resize: /home/thu/data/imagenet_official/val/ILSVRC2012_img_val.tarCouldn't resize: /home/thu/data/imagenet_official/val/ILSVRC2012_img_val.tar

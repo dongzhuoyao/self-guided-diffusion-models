@@ -1,0 +1,53 @@
+target: diffusion.ddpm.LatentDiffusion
+params:
+    given_betas: null
+    beta_schedule: linear
+    linear_start: 0.0001 #0.0015
+    linear_end: 0.02 #0.0155
+    cosine_s: 8e-3 #used for cosine schedule
+    v_posterior: 0.
+    logvar_init: 0.
+    learn_logvar: false
+    clip_denoised: true
+
+
+
+    parameterization: ${sg.params.parameterization}
+    device: ${sg.params.device}
+    log_num_per_prog: ${sg.params.log_num_per_prog}
+
+
+    loss_type: l2
+
+    tero_noise_sampling: false
+    tero_loss_weighting: false
+
+
+
+    sampling: native
+    num_timesteps: 1000
+
+    sampling_imagelogger: ddim
+    num_timesteps_imagelogger: 250
+
+    sampling_val: ddim
+    num_timesteps_val: 50
+
+    sampling_test: ddim
+    num_timesteps_test: 250
+
+    log_dir: ${log_dir}
+    
+    exp: ${exp}
+
+
+
+
+
+
+
+
+
+
+
+

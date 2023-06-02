@@ -1,0 +1,79 @@
+name: ffhq64 #118287 images
+num_classes: 21
+image_size: 128
+channels: 3
+fid_every_n_epoch: 2
+vis_every_iter: 4000
+root: ${data_root}/ffhq/thumbnails128x128
+lr: 1e-4
+wd: 0.01
+
+h5_file: null
+root_global: ${data_root}
+fid_train_image_dir: dataset.DS_CONSTANT.FFHQ128_TRAIN_DIR
+fid_val_image_dir: dataset.DS_CONSTANT.FFHQ128_VAL_DIR
+fid_debug_dir: ${data_root}/sg_fid_eval/in32_4debug
+
+val_fid_num: 1000 # 24 min
+test_fid_num: 10000 # 240 minutes
+  #1000step, ize64,10k images on das6: 14hour
+
+
+trainer:
+  limit_train_batches: 1.0
+  limit_val_batches: 0.1
+  check_val_every_n_epoch: 1
+  max_epochs: 20
+  #30epoch, das6, bs128, 1d20h
+
+
+
+target: pl_datamodule.dm.DataModuleFromConfig
+params:
+  batch_size: 8 # set at top-level for convenience
+  num_workers: 5
+  pin_memory: True
+  wrap: False
+  train:
+    target: dataset.ffhq_dataset.FFHQ
+    params:
+      root: ${data.root}
+      split: 'train'
+      size: ${data.image_size}
+      h5_file: ${data.h5_file}
+      condition_method: ${sg.params.condition_method}
+      condition: ${condition}
+      debug: ${debug}
+
+  validation:
+    target: dataset.ffhq_dataset.FFHQ
+    params:
+      root: ${data.root}
+      split: 'val'
+      size: ${data.image_size}
+      h5_file: ${data.h5_file}
+      condition_method: ${sg.params.condition_method}
+      condition: ${condition}
+      debug: ${debug}
+
+  test:
+    target: dataset.ffhq_dataset.FFHQ
+    params:
+      root: ${data.root}
+      split: 'val'
+      size: ${data.image_size}
+      h5_file: ${data.h5_file}
+      condition_method: ${sg.params.condition_method}
+      condition: ${condition}
+      debug: ${debug}
+  crossds:
+    target: dataset.ffhq_dataset.FFHQ
+    params:
+      root: ${data.root}
+      split: 'val'
+      size: ${data.image_size}
+      h5_file: ${data.h5_file}
+      condition_method: ${sg.params.condition_method}
+      condition: ${condition}
+      debug: ${debug}
+

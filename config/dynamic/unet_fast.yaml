@@ -1,0 +1,20 @@
+target: dynamic.diffusionmodules.openaimodel.UNetModel #default for in32,in64
+params:
+  image_size: ${data.image_size}
+  in_channels: ${data.channels}
+  out_channels: ${data.channels}
+  dropout: 0.1
+  model_channels: 128
+  attention_resolutions: [4]   # 8, 4
+  num_res_blocks: 2
+  channel_mult: [ 1, 2, 4]  # 32, 16, 8, 4, 2
+  num_heads: 8
+  use_scale_shift_norm: True
+  resblock_updown: True
+  use_checkpoint: False
+  use_fp16: False
+  
+  cond_dim: ${sg.params.cond_dim}
+  condition_method: ${sg.params.condition_method}
+  condition: ${condition}
+  ############  classifier-free

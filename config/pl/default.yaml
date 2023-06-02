@@ -1,0 +1,52 @@
+trainer:
+  strategy: null #ddp
+  #profiler: simple #simple, advanced
+  precision: 32 #16
+  amp_backend: native #apex
+  accelerator: gpu
+  devices: ${devices}
+  benchmark: True
+  fast_dev_run: false 
+  accumulate_grad_batches: 1
+  limit_train_batches: ${data.trainer.limit_train_batches}
+  limit_val_batches: ${data.trainer.limit_val_batches}
+  limit_test_batches: 6
+  check_val_every_n_epoch: ${data.trainer.check_val_every_n_epoch}
+  max_epochs: ${data.trainer.max_epochs} 
+  log_every_n_steps: 50
+
+callbacks:
+  image_logger:
+    target: callbacks.my_callbacks.ImageLogger
+    params:
+      batch_frequency: ${data.vis_every_iter}
+      max_images: 8
+
+
+
+  model_checkpoint:
+    target: pytorch_lightning.callbacks.ModelCheckpoint
+    params:
+      dirpath: ${ckpt_dir}
+      filename: "epoch_{epoch:06}-fid_{val/fid_for_ckpt:.2f}" #https://github.com/Lightning-AI/lightning/pull/12649/files
+      verbose: True
+      save_last: True
+      auto_insert_metric_name: False 
+      #monitor: val/loss_ema
+      monitor: val/fid_for_ckpt
+  
+  
+  lr_monitor:
+    target: pytorch_lightning.callbacks.LearningRateMonitor
+    params:
+      logging_interval: # epoch or step
+      log_momentum: False
+
+  cuda_callback:
+    target: callbacks.callback_common.CUDACallback
+    params: {}
+
+  model_summary:
+    target: pytorch_lightning.callbacks.ModelSummary
+    params:
+      max_depth: 8

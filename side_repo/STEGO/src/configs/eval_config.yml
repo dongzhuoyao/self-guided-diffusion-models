@@ -1,0 +1,24 @@
+output_root: '../'
+pytorch_data_dir: '/home/thu/data/stego_data'
+experiment_name: "voc12"
+res: 320
+batch_size: 8
+num_workers: 5
+run_picie: False
+run_crf: True
+run_prediction: True
+dark_mode: True
+use_ddp: False
+
+model_paths:
+  #- "../saved_models/cocostuff27_vit_base_5.ckpt"
+  #- "../saved_models/cityscapes_vit_base_1.ckpt"
+  #- "../saved_models/potsdam_test.ckpt"
+  #- "/home/thu/lab/self-guidance/side_repo/STEGO/checkpoints/voc12/directory_exp1_date_Aug21_00-56-20/epoch=4-step=799.ckpt"
+
+hydra:
+  run:
+    dir: "."
+  output_subdir: ~
+  #job_logging: "disabled"
+  #hydra_logging: "disabled"

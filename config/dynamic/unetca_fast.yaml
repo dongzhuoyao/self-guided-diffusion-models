@@ -1,0 +1,32 @@
+target: dynamic.diffusionmodules.openaimodel_ca.UNetModel #voc,coco
+params:
+
+  
+  #some settings are borrowed from https://github.com/CompVis/latent-diffusion/blob/5a6571e384f9a9b492bbfaca594a2b00cad55279/configs/latent-diffusion/txt2img-1p4B-eval.yaml#L20
+  image_size: ${data.image_size}
+  in_channels: ${data.channels}
+  out_channels: ${data.channels}
+  dropout: 0.
+  model_channels: 128
+  attention_resolutions: [4]   # 8, 4
+  num_res_blocks: 2
+  channel_mult: [ 1, 2, 4]  # or [1,2,4,4]
+  num_heads: 8 #original 32
+  use_scale_shift_norm: True
+
+  use_ca_block: true
+  transformer_depth: 1 #depreciated
+  legacy: False #depreciated
+
+  use_checkpoint: False
+  use_fp16: False
+  
+
+  ############  classifier-free
+  cond_token_num: 0
+  cond_dim: ${sg.params.cond_dim}
+  context_dim: null
+  use_cls_token_as_pooled: True #Bool
+  condition_method: ${sg.params.condition_method}
+  condition: ${condition}
+  ############  classifier-free

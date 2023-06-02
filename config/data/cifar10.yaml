@@ -1,0 +1,68 @@
+name: cifar10
+num_classes: 10
+image_size: 32
+channels: 3
+root: ~/data
+lr: 1e-4
+wd: 0.01
+
+val_fid_num: 10000
+test_fid_num: 10000
+  #1000step, size32,10k images on das6: 4hour
+
+fid_every_n_epoch: 10
+vis_every_iter: 1000
+h5_file: null
+stego_dir: null #only used in voc,coco
+stego_k: -1 #only used in voc,coco
+
+
+fid_train_image_dir: dataset.DS_CONSTANT.CIFAR10_TRAIN_DIR
+fid_val_image_dir: dataset.DS_CONSTANT.CIFAR10_VAL_DIR
+fid_debug_dir: dataset.DS_CONSTANT.FID_DEBUG_DIR
+
+trainer:
+  limit_train_batches: 1.0
+  limit_val_batches: 500
+  check_val_every_n_epoch: 1 #30
+  max_epochs: 150 #300
+
+target: pl_datamodule.dm.DataModuleFromConfig
+params:
+  batch_size: 128 # set at top-level for convenience
+  num_workers: 5
+  pin_memory: True
+  wrap: False
+  train:
+    target: dataset.cifar10_torchvision.CIFAR10
+    params:
+      root: ${data.root}
+      train: True
+      h5_file: ${data.h5_file}
+      condition_method: ${sg.params.condition_method}
+      debug: ${debug}
+  validation:
+    target: dataset.cifar10_torchvision.CIFAR10
+    params:
+      root: ${data.root}
+      train: False
+      h5_file: ${data.h5_file}
+      condition_method: ${sg.params.condition_method}
+      debug: ${debug}
+  test:
+    target: dataset.cifar10_torchvision.CIFAR10
+    params:
+      root: ${data.root}
+      train: False
+      h5_file: ${data.h5_file}
+      condition_method: ${sg.params.condition_method}
+      debug: ${debug}
+  crossds:
+    target: dataset.cifar10_torchvision.CIFAR10
+    params:
+      root: ${data.root}
+      train: False
+      h5_file: ${data.h5_file}
+      condition_method: ${sg.params.condition_method}
+      debug: ${debug}
+

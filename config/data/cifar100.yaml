@@ -1,0 +1,46 @@
+name: cifar100
+num_classes: 100
+image_size: 32
+channels: 3
+fid_every_n_epoch: 20
+vis_every_iter: 1000
+val_fid_num: 9500
+test_fid_num: 9500
+lr: 1e-4
+wd: 0.01
+
+trainer:
+  limit_val_batches: 500
+  check_val_every_n_epoch: 1
+  max_epochs: 300 #1000 for cifar10., 20 for IN32, one-epoch in das6 takes you 1hour
+
+
+
+target: pl_datamodule.dm.DataModuleFromConfig
+params:
+  batch_size: 128 # set at top-level for convenience
+  num_workers: 5
+  pin_memory: True
+  wrap: False
+  train:
+    target: dataset.cifar10_torchvision.CIFAR100
+    params:
+      root: ~/data
+      train: True
+      flip: False
+      debug: ${debug}
+  validation:
+    target: dataset.cifar10_torchvision.CIFAR100
+    params:
+      root: ~/data
+      train: False
+      flip: False
+      debug: ${debug}
+  test:
+    target: dataset.cifar10_torchvision.CIFAR100
+    params:
+      root: ~/data
+      train: False
+      flip: False
+      debug: ${debug}
+

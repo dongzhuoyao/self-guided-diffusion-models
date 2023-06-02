@@ -1,0 +1,6 @@
+channels:
+  - menpo
+  - conda-forge
+  - anaconda
+  - pytorch
+  - defaults

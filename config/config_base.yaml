@@ -1,0 +1,48 @@
+defaults:
+  - pl: default
+  - data: cifar10
+  - model: ddpm
+  - dynamic: unet
+  - sg: default
+  - exp: default
+  - vis: default
+  - condition: default
+  - optim: adamw
+  - _self_
+
+data_root: ~/data
+name: "default"
+resume_from: null
+vis: 6000 #save time to print this long string in terminal.
+
+
+train: True
+debug: False
+profile: False
+seed: 23
+postfix: ""
+logdir: "logs"
+devices: 1
+
+batch_size: ${data.params.batch_size}
+
+
+wandb:
+  name: ${name}
+  project: self-guidance-3
+  entity: dpose-team
+  reinit: False
+  group: DDP
+
+hydra:
+  job:
+    name: ${name}
+    num: 1
+  run:
+    dir: ${log_dir}
+
+
+# for convenience
+log_dir: ./outputs/${name}/${now:%d-%m-%Y}/${now:%H-%M-%S}
+ckpt_dir: ${log_dir}/ckpts
+python_version: ${python_version:}

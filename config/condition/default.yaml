@@ -1,0 +1,50 @@
+  ############  classifier-free
+
+scale_type: 'imagen' #cfg(optimal w=0.1)
+
+
+label:
+  noise_ratio: 0
+
+  
+feat:
+  feat_sample_from: null #ckpt path
+  feat_from: null # simclr_res50, vitbase, vitlarge
+  
+  #mix: false
+  mix_test: false 
+
+  dropout_train: 0 #random dropout partial feature 
+  dropout_test: 0
+  
+cluster:
+  random: false 
+
+knn_feat:
+  knn_k: null 
+
+
+
+stegoclusterlayout:
+  threshold: 0.8
+  layout_dim: 27
+  oracle: false
+  how: stego #oracle, dinoseg, dinobbox, lost, lostkmeans, stego
+  stego_k: ${data.stego_k} 
+  stego_dir: ${data.stego_dir}  
+
+clusterlayout:
+  threshold: 0.8
+  layout_dim: 1
+  oracle: false
+  how: dinoseg #oracle, dinoseg, dinobbox, lost, lostkmeans, stego
+  stego_k: ${data.stego_k} 
+  stego_dir: ${data.stego_dir}  
+  
+
+layout:
+  layout_dim: 21
+  how: dinoseg #oracle, dinoseg, dinobbox, lost, lostkmeans, stego
+  stego_k: ${data.stego_k} 
+  stego_dir: ${data.stego_dir}  
+

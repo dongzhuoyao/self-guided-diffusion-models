@@ -1,0 +1,49 @@
+basic: false 
+
+samecondition: false 
+
+random: false #uncurated 
+
+random_stego_with_mask: false 
+random_lost_with_box: false 
+
+interp: false 
+interp_c:
+  samples: 16
+  n: 9
+
+kmeans_vis: false #visualize clustered images on IN32, IN64, VOC64
+kmeans_vis_c:
+  id: 0
+
+knn_vis: false #conduct query samples by gt, and query gt by samples
+
+scoremix_vis: false #depreciated now
+scoremix_vis_c:
+  samples: 10
+  interp: 11
+
+
+condscale: false # conduct visualization under different condition scale
+condscale_c:
+  range: [0, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  samples: 10
+
+chainvis: false  # visualize chain 
+chainvis_c: 
+  samples: 7
+  timestep: 7
+
+tsne_vis: false #depreciated now
+tsne_vis_c:
+  cluster: 10
+
+cluster_hist_vis: false #depreciated now
+
+
+same_cluster_same_lost: false 
+same_cluster_diff_lost: false
+diff_cluster_same_lost: false
+same_stego_diff_cluster: false
+diff_z_same_stego: false
+  

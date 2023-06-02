@@ -1,0 +1,9 @@
+
+image_dir: "/home/thu/data/cocostuff27/images"
+result_dir: "/home/thu/data/cocostuff27_stego_generated_v0"
+ckpt_path: "/home/thu/lab/self-guidance/side_repo/STEGO/saved_models/cocostuff27_vit_base_5.ckpt"
+papervis_dir: '/home/thu/lab/self-guidance/side_repo/STEGO/outputs/papervis_stego_cocostuff27'
+
+is_vis: False
+
+num_workers: 8

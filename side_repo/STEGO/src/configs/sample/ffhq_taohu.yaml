@@ -1,0 +1,10 @@
+
+image_dir: "/home/thu/data/ffhq/thumbnails64x64_onelevel"
+
+result_dir: "/home/thu/data/ffhq_stego_generated_v0"
+ckpt_path: ""
+papervis_dir: '/home/thu/lab/self-guidance/side_repo/STEGO/outputs/papervis_stego_ffhq'
+
+num_workers: 16
+
+is_vis: True

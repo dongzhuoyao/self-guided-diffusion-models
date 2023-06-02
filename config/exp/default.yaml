@@ -1,0 +1,33 @@
+kmeans_vis: false
+
+#######################################
+cond_scale: true
+
+condmix: false
+condmix_c:
+  interp: 3
+  same_noise: true
+
+
+
+scoremix: false 
+scoremix_c:
+  interp: 3
+  same_noise: true
+
+
+randomsample: false
+
+
+dir4fid: null
+
+crossset: false
+
+test_oracle: false
+ablate_scale: false
+ablate_scale_list: [6]
+
+transfer_video: false
+transfer_image: false
+
+

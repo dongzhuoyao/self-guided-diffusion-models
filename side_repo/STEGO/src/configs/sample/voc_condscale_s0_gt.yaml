@@ -1,0 +1,9 @@
+
+
+condscale: 0
+image_dir: ${condscale_root}/eval_test_v2_ddim250_s${sample.condscale}_sample_rank0_cond_gt_img
+result_dir: ${sample.image_dir}_stego
+ckpt_path: "/home/thu/lab/self-guidance/side_repo/STEGO/checkpoints/voc12/directory_exp1_date_Sep01_13-07-11/epoch=18-step=2400.ckpt"
+papervis_dir: '/home/thu/lab/self-guidance/side_repo/STEGO/outputs/papervis_stego'
+num_workers: 8
+is_vis: True

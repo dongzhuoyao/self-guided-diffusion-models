@@ -1,0 +1,9 @@
+
+image_dir: "/home/thu/data/pascalvoc12_07/VOCdevkit/VOC2012/JPEGImages"
+result_dir: "/home/thu/data/sg_data/voc12_stego_generated_v2xxx"
+ckpt_path: "/home/thu/lab/self-guidance/side_repo/STEGO/checkpoints/voc12/directory_exp1_date_Sep01_13-07-11/epoch=18-step=2400.ckpt"
+papervis_dir: '/home/thu/lab/self-guidance/side_repo/STEGO/outputs/papervis_stego'
+
+num_workers: 8
+
+is_vis: True
